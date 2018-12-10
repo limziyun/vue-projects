@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
+    <!-- <meta charset="utf-8" /> -->
     <style>
       table {
         border-collapse: collapse;
@@ -9,7 +9,8 @@
         font: 12px sans-serif;
       }
 
-      td {
+      td,
+      th {
         border: 1px black solid;
         padding: 5px;
       }
@@ -18,15 +19,25 @@
 
   <body>
     <!-- <script src="http://d3js.org/d3.v3.min.js"></script> -->
-    <!-- <script src="d3.min.js?v=3.2.8"></script> -->
+    <!--
+      <script src="d3.min.js?v=3.2.8">
+      </script>
+    -->
     <script src="https://unpkg.com/vue"></script>
     <script src="https://unpkg.com/vue-json-excel"></script>
 
     <div id="app">
       <table>
-        <tr>
-          <th v-for="header in gridCol">{{ header }}</th>
-        </tr>
+        <thead>
+          <tr>
+            <th v-for="header in gridCol">{{ header }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="entry in gridData">
+            <td v-for="header in gridCol">{{ entry[header] }}</td>
+          </tr>
+        </tbody>
       </table>
     </div>
   </body>
@@ -34,15 +45,12 @@
 
 <script>
   var app = new Vue({
-  	el: #app,
-  data: {
-  	gridCol: ["Color", "Count"],
-  	gridData: [
-  	{Color: "Red", Count: 5},
-  	{Color: "Blue", Count: 3}
-  	]
-  }
-  })
+    el: "#app",
+    data: {
+      gridCol: ["Color", "Count"],
+      gridData: [{ Color: "Red", Count: 5 }, { Color: "Blue", Count: 3 }]
+    }
+  });
 </script>
 
 <!--
