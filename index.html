@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      table {
+        border-collapse: collapse;
+        border: 2px black solid;
+        font: 12px sans-serif;
+      }
+
+      td {
+        border: 1px black solid;
+        padding: 5px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- <script src="http://d3js.org/d3.v3.min.js"></script> -->
+    <!-- <script src="d3.min.js?v=3.2.8"></script> -->
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/vue-json-excel"></script>
+
+    <div id="app">
+      <table>
+        <tr>
+          <th v-for="header in gridCol">{{ header }}</th>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>
+
+<script>
+  var app = new Vue({
+  	el: #app,
+  data: {
+  	gridCol: ["Color", "Count"],
+  	gridData: [
+  	{Color: "Red", Count: 5},
+  	{Color: "Blue", Count: 3}
+  	]
+  }
+  })
+</script>
+
+<!--
+  <script type="text/javascript" charset="utf-8">
+  	d3.text("data.csv", function(data) {
+                  var parsedCSV = d3.csv.parseRows(data);
+
+                  var container = d3.select("body")
+                      .append("table")
+
+                      .selectAll("tr")
+                          .data(parsedCSV).enter()
+                          .append("tr")
+
+                      .selectAll("td")
+                          .data(function(d) { return d; }).enter()
+                          .append("td")
+                          .text(function(d) { return d; });
+              });
+  </script>
+-->
