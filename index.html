@@ -25,8 +25,13 @@
     -->
     <script src="https://unpkg.com/vue"></script>
     <script src="https://unpkg.com/vue-json-excel"></script>
+    <script src="jquery-3.3.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="./main.js"></script>
+    <script src="https://apis.google.com/js/api.js"></script>
 
     <div id="app">
+      <h4>Table using local data</h4>
       <table>
         <thead>
           <tr>
@@ -39,16 +44,148 @@
           </tr>
         </tbody>
       </table>
+      <br />
+      <h4>Table using methods to pull csv data</h4>
+      <p>Somehow affects the table above if newFn is used (doesn't work too)</p>
+      <table>
+        <thead>
+          <tr>
+            <th v-for="header in csvHead">{{ header }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="entry in csvBody">
+            <td v-for="header in csvHead">{{ entry[header] }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <br />
+      <h4>Table using Google iframe</h4>
+      <p>
+        Changes "live". Ref from
+        <a
+          href="http://www.bdnyc.org/2012/08/how-to-embed-a-live-google-docs-spreadsheet-into-a-webpage/"
+          >here</a
+        >
+      </p>
+      <iframe
+        src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQCsOho3wGlabVbqGFV9YM4eK2Q5p7rHFgkZ3dnT2fRFKVmxGdbe2TgfC9yzAmXMNdRhWmbgf2w1XT6/pubhtml?widget=true&amp;headers=false"
+      ></iframe>
     </div>
+    <!--
+      <div id="wrap"><h4>Second Table</h4></div>
+      <script>
+        $.get("./data.csv", function(data) {
+          var build =
+            '<table border="1" cellpadding="2" cellspacing="0" style="border-collapse: collapse" width="100%">\n';
+          var head = data.split("\n");
+          for (var i = 0; i < 1; i++) {
+            build += "<tr><th>" + head[i] + "</th></tr>";
+            for (var i = 1; i < head.length; i++) {
+              build += "<tr><td>" + head[i] + "</td></tr>";
+            }
+          }
+          build += "</table>";
+          $("#wrap").append(build);
+        });
+      </script>
+    -->
   </body>
 </html>
 
 <script>
   var app = new Vue({
     el: "#app",
-    data: {
-      gridCol: ["Color", "Count"],
-      gridData: [{ Color: "Red", Count: 5 }, { Color: "Blue", Count: 3 }]
+    data: function() {
+      return {
+        gridCol: ["Color", "Count"],
+        gridData: [{ Color: "Red", Count: 5 }, { Color: "Blue", Count: 3 }],
+        csvHead: [],
+        csvBody: []
+      };
+    },
+    mounted: function() {
+      //readCSV(
+      //  "https://docs.google.com/spreadsheets/d/1zDFWwWLaPu5Wmlz6VQJqGaTsl7TuleoxZYdn8B3zFS0/gviz/tq?tqx=out:csv&sheet=colors"
+      //);
+      /*saveData(
+        '"Color","Count"\n"Red","5"\n"Blue","3"\n"Yellow","7"\n"Green","2"'
+      ); */
+      //readTextFile("https://docs.google.com/spreadsheets/d/1zDFWwWLaPu5Wmlz6VQJqGaTsl7TuleoxZYdn8B3zFS0/gviz/tq?tqx=out:csv&sheet=colors");
+      this.newFn();
+      //this.anotherFn();
+    },
+    methods: {
+      /*
+      anotherFn() {
+        var self = this;
+        gapi.client.sheets.spreadsheets.values
+          .get({
+            spreadsheetId: "1RJiaXFQQGw9rxrHvxYn1C25xu494y7W-AP9n1IkXg9E",
+            range: "Sheet1!A1:B1"
+          })
+          .then(response => {
+            var result = response.result;
+            //var numRows = result.values ? result.values.length : 0;
+            var self = this;
+            self.csvHead = result.values;
+          });
+      }, */ /*
+      saveData(csv) {
+        const self = this;
+        var lines = csv.split("\n");
+        var body = [];
+        self.csvHead = lines[0].split(",");
+        for (var i = 1; i < lines.length; i++) {
+          var newLine = lines[i].split(",");
+          body.push(newLine);
+        }
+        self.csvBody = body;
+        return body;
+      }, */
+
+  		newFn: function(){
+  			const parse = require('csv-parse');
+  			const assert = require('assert');
+        var input = '"Color","Count"\n"Red","5"\n"Blue","3"\n"Yellow","7"\n"Green","2"';
+  			parse(input, function(err, output){
+  				var self = this;
+  				self.csvHead = output[0];
+  				self.csvBody = output[1:];
+  			});
+  		},
+      /*
+      readCSV: function(file) {
+        var self = this;
+        if (window.FileReader) {
+          var reader = new FileReader();
+          reader.readAsText(file.target.files[0]);
+          // Handle errors load
+          reader.onload = function(event) {
+            var csv = event.target.result;
+            self.csvBody = self.saveData(csv);
+          };
+        }
+      }, */
+      /*
+      // will most prob not use this
+  	readTextFile(file) {
+  		var rawFile = new XMLHttpRequest();
+  		var self = this;
+  		var open = rawFile.open("GET", file, false);
+  		var allText = rawFile.responseText;
+  		self.saveData(allText);
+  		rawFile.onreadystatechange = function () {
+  			if(rawFile.readyState === 4) {
+  				if(rawFile.status === 200 || rawFile.status == 0) {
+  					var allText = rawFile.responseText;
+  					//self.saveData(allText);
+  					alert(allText);
+  					}
+  			//self.saveData(allText)
+  				}
+  			} rawFile.send(null);
+  		}; */
     }
   });
 </script>
