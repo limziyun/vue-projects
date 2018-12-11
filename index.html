@@ -120,6 +120,7 @@
     methods: {
       anotherFn() {
         var self = this;
+        console.log("this is before");
         gapi.client.sheets.spreadsheets.values
           .get({
             spreadsheetId: "1RJiaXFQQGw9rxrHvxYn1C25xu494y7W-AP9n1IkXg9E",
