@@ -128,7 +128,7 @@
           .then(function(text) {
             console.log(text);
             console.log(typeof text);
-            text.replace('"', '');
+            text = text.replace('"', '');
             //parseCSV(text);
             const self = this;
             var lines = text.split("\n");
