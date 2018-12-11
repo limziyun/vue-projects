@@ -120,9 +120,8 @@
     methods: {
       fetchData(url) {
         fetch(url)
-          .then(resp => resp.json())
-          .then(function() {
-            console.log(url);
+          .then(function(response) {
+            console.log(response.body);
           });
        }, 
     /*
