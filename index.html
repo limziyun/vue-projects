@@ -146,18 +146,17 @@
               .on("end", () => {
                 console.log(results);
             }); */
-            const self = this;
             var lines = text.split("\n");
             var body = [];
             self.csvHead = lines[0].split(",");
-            console.log("head: " + self.csvHead);
+            console.log(self.csvHead);
             for (var i = 1; i < lines.length; i++) {
               var newLine = lines[i].split(",");
               body.push(newLine);
             }
             console.log(body);
             self.csvBody = body;
-            console.log("body: " + self.csvBody);
+            console.log(self.csvBody);
             console.log(typeof self.csvBody);
             return body;
           });
