@@ -91,7 +91,7 @@
 </html>
 
 <script>
-  import * as CSV from 'csv-string';
+  //import * as CSV from 'csv-string';
   
   var app = new Vue({
     el: "#app",
@@ -126,6 +126,7 @@
             console.log(text);
             console.log(typeof text);
             text = text.replace(/"/g, "");
+            var CSV = require('csv-string');
             var arr = CSV.parse(text);
             console.log("arr: " + arr);
             self.csvHead = arr[0];
