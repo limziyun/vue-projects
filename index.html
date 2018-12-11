@@ -120,11 +120,14 @@
     methods: {
       fetchData(url) {
         fetch(url)
-          .then(resp => resp.text())
-          .then(text => console.log(text));
-          //.then(function(response) {
-          //  console.log(response.text());
-          //});
+          //.then(resp => resp.text())
+          //.then(text => console.log(text));
+          .then(function(response) {
+            return response.text();
+          })
+          .then(function(text){ 
+            console.log("new: "+text);
+          });
        }, 
     /*
       anotherFn() {
