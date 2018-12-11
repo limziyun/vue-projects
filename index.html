@@ -100,8 +100,8 @@
       return {
         gridCol: ["Color", "Count"],
         gridData: [{ Color: "Red", Count: 5 }, { Color: "Blue", Count: 3 }],
-        csvHead: "",
-        csvBody: ""
+        csvHead: [],
+        csvBody: []
       };
     },
     mounted: function() {
@@ -151,21 +151,23 @@
             }); */
             var lines = text.split("\n");
             var body = [];
-            self.csvHead = lines[0].split(",");
+            //self.csvHead = lines[0].split(",");
+            Vue.set(app.csvHead, 0, lines[0].split(","));
             console.log(self.csvHead);
             for (var i = 1; i < lines.length; i++) {
               var newLine = lines[i].split(",");
               body.push(newLine);
             }
             console.log(body);
-            self.csvBody = body;
+            //self.csvBody = body;
+            Vue.set(app.csvBody, 0, body);
             console.log(self.csvBody);
             console.log(typeof self.csvBody);
             return body;
-            callback(this.csvBody);
+            //callback(this.csvBody);
         });
         //console.log("test");
-        //console.log(this.csvBody);
+        console.log(this.csvBody);
       },
       parseCSV(text) {
         console.log("calling parseCSV");
