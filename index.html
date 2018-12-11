@@ -124,7 +124,16 @@
             console.log(typeof text);
             text = text.replace(/"/g, "");
             //this.parseCSV(text);
-            this.saveData(text);
+            console.log("calling parseCSV");
+            const csv = require("csv-parser");
+            const fs = require("fs");
+            const results = [];
+            fs.createReadStream(text)
+              .pipe(csv())
+              .on("data", results.push)
+              .on("end", () => {
+                console.log(results);
+            });
             /*
             const self = this;
             var lines = text.split("\n");
