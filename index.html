@@ -123,7 +123,10 @@
             console.log(text);
             console.log(typeof text);
             text = text.replace(/"/g, "");
+            newText = text.json();
+            console.log(newText);
             //this.parseCSV(text);
+            /*
             console.log("calling parseCSV");
             const csv = require("csv-parser");
             const fs = require("fs");
@@ -133,8 +136,8 @@
               .on("data", results.push)
               .on("end", () => {
                 console.log(results);
-            });
-            /*
+            }); */
+            
             const self = this;
             var lines = text.split("\n");
             var body = [];
@@ -148,7 +151,7 @@
             self.csvBody = body;
             console.log("body: " + self.csvBody);
             console.log(typeof self.csvBody);
-            return body; */
+            return body;
           });
       },
       parseCSV(text) {
