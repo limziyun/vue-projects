@@ -117,8 +117,6 @@
     },
     methods: {
       fetchData(url) {
-        var tempBody;
-        var tempHead;
         fetch(url)
           //.then(resp => resp.text())
           //.then(text => console.log(text));
@@ -155,14 +153,14 @@
             //self.csvHead = lines[0].split(",");
             var head = lines[0].split(",");
             for (var i = 0; i < head.length; i++){
-              this.csvHead.push(head.slice(i, i+1));
+              self.csvHead.push(head.slice(i, i+1));
               //Vue.set(app.csvHead, i, head.slice(i, i+1));
             }
             console.log(self.csvHead);
             for (var i = 1; i < lines.length; i++) {
               var newLine = lines[i].split(",");
               if (newLine){
-                this.csvBody.push(newLine);
+                self.csvBody.push(newLine);
                 //Vue.set(app.csvBody, i, newLine);
               }
               body.push(newLine);
