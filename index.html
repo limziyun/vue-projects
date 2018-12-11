@@ -69,7 +69,7 @@
         >
       </p>
       <iframe
-        src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQCsOho3wGlabVbqGFV9YM4eK2Q5p7rHFgkZ3dnT2fRFKVmxGdbe2TgfC9yzAmXMNdRhWmbgf2w1XT6/pubhtml?widget=true&amp;headers=false"
+        src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQCsOho3wGlabVbqGFV9YM4eK2Q5p7rHFgkZ3dnT2fRFKVmxGdbe2TgfC9yzAmXMNdRhWmbgf2w1XT6/pubhtml?gid=509534220&amp;single=true&amp;widget=true&amp;headers=false"
       ></iframe>
     </div>
     <!--
@@ -108,29 +108,30 @@
       //readCSV(
       //  "https://docs.google.com/spreadsheets/d/1zDFWwWLaPu5Wmlz6VQJqGaTsl7TuleoxZYdn8B3zFS0/gviz/tq?tqx=out:csv&sheet=colors"
       //);
-      /*saveData(
-        '"Color","Count"\n"Red","5"\n"Blue","3"\n"Yellow","7"\n"Green","2"'
-      ); */
+      //saveData(
+      //  '"Color","Count"\n"Red","5"\n"Blue","3"\n"Yellow","7"\n"Green","2"'
+      //);
       //readTextFile("https://docs.google.com/spreadsheets/d/1zDFWwWLaPu5Wmlz6VQJqGaTsl7TuleoxZYdn8B3zFS0/gviz/tq?tqx=out:csv&sheet=colors");
-      this.newFn();
-      //this.anotherFn();
+      //this.newFn();
+      this.anotherFn();
     },
     methods: {
-      /*
       anotherFn() {
         var self = this;
         gapi.client.sheets.spreadsheets.values
           .get({
             spreadsheetId: "1RJiaXFQQGw9rxrHvxYn1C25xu494y7W-AP9n1IkXg9E",
-            range: "Sheet1!A1:B1"
+            range: "Colors!A1:B1"
           })
-          .then(response => {
+          .then(function(response) {
+            console.log("executed");
             var result = response.result;
             //var numRows = result.values ? result.values.length : 0;
             var self = this;
-            self.csvHead = result.values;
+            var data = result.values;
+            self.csvHead = data[0];
           });
-      }, */ /*
+      },
       saveData(csv) {
         const self = this;
         var lines = csv.split("\n");
@@ -142,8 +143,8 @@
         }
         self.csvBody = body;
         return body;
-      }, */
-
+      }
+      /*
   		newFn: function(){
   			const parse = require('csv-parse');
   			const assert = require('assert');
@@ -153,7 +154,7 @@
   				self.csvHead = output[0];
   				self.csvBody = output[1:];
   			});
-  		},
+  		}, */
       /*
       readCSV: function(file) {
         var self = this;
