@@ -110,14 +110,15 @@
       //readCSV(
       //  "https://docs.google.com/spreadsheets/d/1zDFWwWLaPu5Wmlz6VQJqGaTsl7TuleoxZYdn8B3zFS0/gviz/tq?tqx=out:csv&sheet=colors"
       //);
-      //saveData(
-      //  '"Color","Count"\n"Red","5"\n"Blue","3"\n"Yellow","7"\n"Green","2"'
-      //);
+      saveData(
+        '"Color","Count"\n"Red","5"\n"Blue","3"\n"Yellow","7"\n"Green","2"'
+      );
       //readTextFile("https://docs.google.com/spreadsheets/d/1zDFWwWLaPu5Wmlz6VQJqGaTsl7TuleoxZYdn8B3zFS0/gviz/tq?tqx=out:csv&sheet=colors");
       //this.newFn();
-      this.anotherFn();
+      //this.anotherFn();
     },
     methods: {
+      /*
       anotherFn() {
         var self = this;
         console.log("this is before");
@@ -134,19 +135,21 @@
             var data = result.values;
             self.csvHead = data[0];
           });
-      } /*
+      }, */
       saveData(csv) {
         const self = this;
         var lines = csv.split("\n");
         var body = [];
         self.csvHead = lines[0].split(",");
+        console.log(self.csvHead);
         for (var i = 1; i < lines.length; i++) {
           var newLine = lines[i].split(",");
           body.push(newLine);
         }
+        console.log(body);
         self.csvBody = body;
         return body;
-      }, */
+      }, 
       /*
   		newFn: function(){
   			const parse = require('csv-parse');
