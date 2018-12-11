@@ -153,7 +153,7 @@
             var lines = text.split("\n");
             var body = [];
             //self.csvHead = lines[0].split(",");
-            Vue.set(app.csvHead, 0, lines[0].split(","));
+            Vue.set(app.csvHead, 0, lines[0].split(",").slice());
             console.log(self.csvHead);
             for (var i = 1; i < lines.length; i++) {
               var newLine = lines[i].split(",");
@@ -161,7 +161,7 @@
             }
             console.log(body);
             //self.csvBody = body;
-            Vue.set(app.csvBody, 0, body[0:]);
+            Vue.set(app.csvBody, 0, body.slice());
             console.log(self.csvBody);
             console.log(typeof self.csvBody);
             return body;
