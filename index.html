@@ -24,10 +24,12 @@
       </script>
     -->
     <script src="https://unpkg.com/vue"></script>
-    <script src="https://unpkg.com/vue-json-excel"></script>
-    <script src="jquery-3.3.1.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="./main.js"></script>
+    <!-- <script src="https://unpkg.com/vue-json-excel"></script> -->
+    <!-- <script src="jquery-3.3.1.min.js"></script> -->
+    <!--
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    -->
+    <!-- <script src="./main.js"></script> -->
     <script src="https://apis.google.com/js/api.js"></script>
 
     <div id="app">
@@ -131,7 +133,7 @@
             var data = result.values;
             self.csvHead = data[0];
           });
-      },
+      } /*
       saveData(csv) {
         const self = this;
         var lines = csv.split("\n");
@@ -143,7 +145,7 @@
         }
         self.csvBody = body;
         return body;
-      }
+      }, */
       /*
   		newFn: function(){
   			const parse = require('csv-parse');
