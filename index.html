@@ -125,23 +125,40 @@
           .then(function(response) {
             return response.text();
           })
-          .then(function(text){ 
+          .then(function(text) {
             console.log(text);
+            parseCSV(text);
+            /*
             const self = this;
             var lines = text.split("\n");
-            var body = []; 
+            var body = [];
             self.csvHead = lines[0].split(",");
             console.log(self.csvHead);
-  	        for (var i = 1; i < lines.length; i++) {
+            for (var i = 1; i < lines.length; i++) {
               var newLine = lines[i].split(",");
               body.push(newLine);
             }
             console.log(body);
-            self.csvBody=body;
+            self.csvBody = body;
             console.log(self.csvBody);
-            return body;
+            return body; */
           });
-       }, 
+      },
+      parseCSV(text) {
+        const csv = require("csv-parser");
+        const fs = require("fs");
+        const results = [];
+        fs.createReadStream(text)
+          .pipe(csv())
+          .on("data", results.push)
+          .on("end", () => {
+            console.log(results);
+            // [
+            // { NAME: 'Daffy Duck', AGE: 24 },
+            // { NAME: 'BugsBunny', AGE: 22 }
+            // ]
+          });
+      }
     /*
       anotherFn() {
         var self = this;
