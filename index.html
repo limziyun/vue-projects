@@ -128,8 +128,8 @@
           .then(function(text) {
             console.log(text);
             console.log(typeof text);
-            parseCSV(text);
-            /*
+            text.replace('"', '');
+            //parseCSV(text);
             const self = this;
             var lines = text.split("\n");
             var body = [];
@@ -142,7 +142,7 @@
             console.log(body);
             self.csvBody = body;
             console.log(self.csvBody);
-            return body; */
+            return body;
           });
       },
       parseCSV(text) {
