@@ -25,12 +25,6 @@
     -->
     <script src="https://unpkg.com/vue"></script>
     <!-- <script src="https://unpkg.com/vue-json-excel"></script> -->
-    <!-- <script src="jquery-3.3.1.min.js"></script> -->
-    <!--
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    -->
-    <!-- <script src="./main.js"></script> -->
-    <script src="https://apis.google.com/js/api.js"></script>
 
     <div id="app">
       <h4>Table using local data</h4>
@@ -129,7 +123,9 @@
             console.log(text);
             console.log(typeof text);
             text = text.replace(/"/g, "");
-            //parseCSV(text);
+            //this.parseCSV(text);
+            this.saveData(text);
+            /*
             const self = this;
             var lines = text.split("\n");
             var body = [];
@@ -143,7 +139,7 @@
             self.csvBody = body;
             console.log("body: " + self.csvBody);
             console.log(typeof self.csvBody);
-            return body;
+            return body; */
           });
       },
       parseCSV(text) {
@@ -162,25 +158,6 @@
             // ]
           });
       },
-    /*
-      anotherFn() {
-        var self = this;
-        console.log("this is before");
-        gapi.client.sheets.spreadsheets.values
-          .get({
-            spreadsheetId: "1RJiaXFQQGw9rxrHvxYn1C25xu494y7W-AP9n1IkXg9E",
-            range: "Colors!A1:B1"
-          })
-          .then(function(response) {
-            console.log("executed");
-            var result = response.result;
-            //var numRows = result.values ? result.values.length : 0;
-            var self = this;
-            var data = result.values;
-            self.csvHead = data[0];
-          });
-      },*/
-      /*
       saveData(csv) {
         const self = this;
         var lines = csv.split("\n");
@@ -195,7 +172,7 @@
         self.csvBody = body;
         console.log(self.csvBody);
         return body;
-      }, */
+      },
       /*
   		newFn: function(){
   			const parse = require('csv-parse');
