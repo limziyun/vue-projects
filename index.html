@@ -126,7 +126,19 @@
             return response.text();
           })
           .then(function(text){ 
-            console.log("new: "+text);
+            console.log(text);
+            const self = this;
+            var lines = csv.split("\n");
+            var body = []; self.csvHead = lines[0].split(",");
+            console.log(self.csvHead);
+  	        for (var i = 1; i < lines.length; i++) {
+              var newLine=l ines[i].split( ",");
+              body.push(newLine);
+            }
+            console.log(body);
+            self.csvBody=body;
+            console.log(self.csvBody);
+            return body;
           });
        }, 
     /*
@@ -147,6 +159,7 @@
             self.csvHead = data[0];
           });
       },*/
+      /*
       saveData(csv) {
         const self = this;
         var lines = csv.split("\n");
@@ -161,7 +174,7 @@
         self.csvBody = body;
         console.log(self.csvBody);
         return body;
-      }, 
+      }, */
       /*
   		newFn: function(){
   			const parse = require('csv-parse');
