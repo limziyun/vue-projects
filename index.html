@@ -128,6 +128,28 @@
             console.log(text);
             console.log(typeof text);
             text = text.replace(/"/g, "");
+            var lines = text.split("\n");
+            var body = [];
+            //self.csvHead = lines[0].split(",");
+            var head = lines[0].split(",");
+            var temp = self.csvHead.concat(head);
+            self.csvHead = temp;
+            console.log(self.csvHead);
+            for (var i = 1; i < lines.length; i++) {
+              var newLine = lines[i].split(",");
+              if (newLine){
+                self.csvBody.push(newLine);
+                //Vue.set(app.csvBody, i, newLine);
+              }
+              body.push(newLine);
+            }
+            console.log(body);
+            //self.csvBody = body;
+            //Vue.set(app.csvBody, 0, body.slice());
+            console.log(self.csvBody);
+            console.log(typeof self.csvBody);
+            return body;
+            //callback(this.csvBody);
             /*
             var CSV = require('csv-string');
             var arr = CSV.parse(text);
@@ -148,36 +170,7 @@
               .on("end", () => {
                 console.log(results);
             }); */
-            var lines = text.split("\n");
-            var body = [];
-            //self.csvHead = lines[0].split(",");
-            var head = lines[0].split(",");
-            var temp = self.csvHead.concat(head);
-            self.csvHead = temp;
-            /*
-            for (var i = 0; i < head.length; i++){
-              self.csvHead.push(head.slice(i, i+1));
-              //Vue.set(app.csvHead, i, head.slice(i, i+1));
-            } */
-            console.log(self.csvHead);
-            for (var i = 1; i < lines.length; i++) {
-              var newLine = lines[i].split(",");
-              if (newLine){
-                self.csvBody.push(newLine);
-                //Vue.set(app.csvBody, i, newLine);
-              }
-              body.push(newLine);
-            }
-            console.log(body);
-            //self.csvBody = body;
-            //Vue.set(app.csvBody, 0, body.slice());
-            console.log(self.csvBody);
-            console.log(typeof self.csvBody);
-            return body;
-            //callback(this.csvBody);
         });
-        //console.log("test");
-        console.log(this.csvBody);
       },
       parseCSV(text) {
         console.log("calling parseCSV");
