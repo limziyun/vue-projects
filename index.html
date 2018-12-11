@@ -116,6 +116,8 @@
     },
     methods: {
       fetchData(url) {
+        var tempBody;
+        var tempHead;
         fetch(url)
           //.then(resp => resp.text())
           //.then(text => console.log(text));
@@ -160,9 +162,11 @@
             console.log(self.csvBody);
             console.log(typeof self.csvBody);
             return body;
-          });
-        console.log("test");
-        console.log(this.csvBody);
+          }
+            callback(this.csvBody);
+        );
+        //console.log("test");
+        //console.log(this.csvBody);
       },
       parseCSV(text) {
         console.log("calling parseCSV");
