@@ -118,11 +118,13 @@
       //this.anotherFn();
     },
     methods: {
-      fetchData(url){
-        fetch(url).then(function() {
-          console.log(url);
-        })
-      },
+      fetchData(url) {
+        fetch(url)
+          .then(resp => resp.json())
+          .then(function() {
+            console.log(url);
+          });
+       }, 
     /*
       anotherFn() {
         var self = this;
