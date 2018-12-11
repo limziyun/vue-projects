@@ -51,8 +51,8 @@
         </thead>
         <tbody>
           <tr v-for="entry in csvBody">
-            <td>{{ entry }}</td>
-            <!-- <td>{{ entry[1] }}</td> -->
+            <td>{{ entry[0] }}</td>
+            <td>{{ entry[1] }}</td>
           </tr>
         </tbody>
       </table>
@@ -160,7 +160,7 @@
             console.log(self.csvHead);
             for (var i = 1; i < lines.length; i++) {
               var newLine = lines[i].split(",");
-              if (newLine != null){
+              if (newLine){
                 Vue.set(app.csvBody, i, newLine);
               }
               body.push(newLine);
