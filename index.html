@@ -111,14 +111,18 @@
       //this.readCSV(
       //  "https://docs.google.com/spreadsheets/d/1zDFWwWLaPu5Wmlz6VQJqGaTsl7TuleoxZYdn8B3zFS0/gviz/tq?tqx=out:csv&sheet=colors"
       //);
-      this.saveData(
-        'Color,Count\nRed,5\nBlue,3\nYellow,7\nGreen,2'
-      );
+      //this.saveData("Color,Count\nRed,5\nBlue,3\nYellow,7\nGreen,2");
       //readTextFile("https://docs.google.com/spreadsheets/d/1zDFWwWLaPu5Wmlz6VQJqGaTsl7TuleoxZYdn8B3zFS0/gviz/tq?tqx=out:csv&sheet=colors");
       //this.newFn();
-      this.anotherFn();
+      this.fetchData('https://docs.google.com/spreadsheets/d/1zDFWwWLaPu5Wmlz6VQJqGaTsl7TuleoxZYdn8B3zFS0/gviz/tq?tqx=out:csv&sheet=colors');
+      //this.anotherFn();
     },
     methods: {
+      fetchData(url){
+        fetch(url).then(function{
+          console.log(url);
+        })
+      },
       anotherFn() {
         var self = this;
         console.log("this is before");
