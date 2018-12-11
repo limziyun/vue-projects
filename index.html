@@ -48,7 +48,7 @@
       </table>
       <br />
       <h4>Table using methods to pull csv data</h4>
-      <p>Somehow affects the table above if newFn is used (doesn't work too)</p>
+      <p>Using saveData function</p>
       <table>
         <thead>
           <tr>
@@ -116,10 +116,9 @@
       );
       //readTextFile("https://docs.google.com/spreadsheets/d/1zDFWwWLaPu5Wmlz6VQJqGaTsl7TuleoxZYdn8B3zFS0/gviz/tq?tqx=out:csv&sheet=colors");
       //this.newFn();
-      //this.anotherFn();
+      this.anotherFn();
     },
     methods: {
-      /*
       anotherFn() {
         var self = this;
         console.log("this is before");
@@ -136,7 +135,7 @@
             var data = result.values;
             self.csvHead = data[0];
           });
-      }, */
+      },
       saveData(csv) {
         const self = this;
         var lines = csv.split("\n");
