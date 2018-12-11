@@ -91,6 +91,8 @@
 </html>
 
 <script>
+  import * as CSV from 'csv-string';
+  
   var app = new Vue({
     el: "#app",
     data: function() {
@@ -120,11 +122,16 @@
             return response.text();
           })
           .then(function(text) {
+            var self = this;
             console.log(text);
             console.log(typeof text);
             text = text.replace(/"/g, "");
-            newText = text.json();
-            console.log(newText);
+            var arr = CSV.parse(text);
+            console.log("arr: " + arr);
+            self.csvHead = arr[0];
+            console.log("head: "+self.csvHead);
+            self.csvBody = arr[1:];
+            console.log("body: "+self.csvBody);
             //this.parseCSV(text);
             /*
             console.log("calling parseCSV");
@@ -137,7 +144,7 @@
               .on("end", () => {
                 console.log(results);
             }); */
-            
+            /*
             const self = this;
             var lines = text.split("\n");
             var body = [];
@@ -151,7 +158,7 @@
             self.csvBody = body;
             console.log("body: " + self.csvBody);
             console.log(typeof self.csvBody);
-            return body;
+            return body; */
           });
       },
       parseCSV(text) {
