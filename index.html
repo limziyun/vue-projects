@@ -157,11 +157,12 @@
             console.log(self.csvHead);
             for (var i = 1; i < lines.length; i++) {
               var newLine = lines[i].split(",");
+              Vue.set(app.csvBody, i, newLine);
               body.push(newLine);
             }
             console.log(body);
             //self.csvBody = body;
-            Vue.set(app.csvBody, 0, body.slice());
+            //Vue.set(app.csvBody, 0, body.slice());
             console.log(self.csvBody);
             console.log(typeof self.csvBody);
             return body;
