@@ -152,7 +152,8 @@
             var body = [];
             //self.csvHead = lines[0].split(",");
             var head = lines[0].split(",");
-            self.csvHead.concat(head);
+            var temp = self.csvHead.concat(head);
+            self.csvHead = temp;
             /*
             for (var i = 0; i < head.length; i++){
               self.csvHead.push(head.slice(i, i+1));
