@@ -128,8 +128,9 @@
           .then(function(text){ 
             console.log(text);
             const self = this;
-            var lines = csv.split("\n");
-            var body = []; self.csvHead = lines[0].split(",");
+            var lines = text.split("\n");
+            var body = []; 
+            self.csvHead = lines[0].split(",");
             console.log(self.csvHead);
   	        for (var i = 1; i < lines.length; i++) {
               var newLine = lines[i].split(",");
