@@ -51,8 +51,8 @@
         </thead>
         <tbody>
           <tr v-for="entry in csvBody">
-            <td>{{ entry }}</td>
-            <!-- <td>{{ entry[1] }}</td> -->
+            <td>{{ entry[0] }}</td>
+            <td>{{ entry[1] }}</td>
           </tr>
         </tbody>
       </table>
@@ -152,10 +152,12 @@
             var body = [];
             //self.csvHead = lines[0].split(",");
             var head = lines[0].split(",");
+            self.csvHead.push(head);
+            /*
             for (var i = 0; i < head.length; i++){
               self.csvHead.push(head.slice(i, i+1));
               //Vue.set(app.csvHead, i, head.slice(i, i+1));
-            }
+            } */
             console.log(self.csvHead);
             for (var i = 1; i < lines.length; i++) {
               var newLine = lines[i].split(",");
