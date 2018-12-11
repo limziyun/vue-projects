@@ -56,6 +56,7 @@
           </tr>
         </tbody>
       </table>
+      <p> {{ csvHead }} </p>
       <p> {{ csvBody }} </p>
       <br />
       <h4>Table using Google iframe</h4>
@@ -160,7 +161,7 @@
             }
             console.log(body);
             //self.csvBody = body;
-            Vue.set(app.csvBody, 0, body);
+            Vue.set(app.csvBody, 0, body[0:]);
             console.log(self.csvBody);
             console.log(typeof self.csvBody);
             return body;
