@@ -153,11 +153,16 @@
             var lines = text.split("\n");
             var body = [];
             //self.csvHead = lines[0].split(",");
-            Vue.set(app.csvHead, 0, lines[0].split(",").slice());
+            var head = lines[0].split(",");
+            for (var i = 0; i < head.length; i++){
+              Vue.set(app.csvHead, i, head.slice(i, i+1));
+            }
             console.log(self.csvHead);
             for (var i = 1; i < lines.length; i++) {
               var newLine = lines[i].split(",");
-              Vue.set(app.csvBody, i, newLine);
+              if (newLine != null){
+                Vue.set(app.csvBody, i, newLine);
+              }
               body.push(newLine);
             }
             console.log(body);
