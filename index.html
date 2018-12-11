@@ -134,14 +134,14 @@
             var lines = text.split("\n");
             var body = [];
             self.csvHead = lines[0].split(",");
-            console.log(self.csvHead);
+            console.log("head: " + self.csvHead);
             for (var i = 1; i < lines.length; i++) {
               var newLine = lines[i].split(",");
               body.push(newLine);
             }
             console.log(body);
             self.csvBody = body;
-            console.log(self.csvBody);
+            console.log("body: " + self.csvBody);
             return body;
           });
       },
