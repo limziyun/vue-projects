@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      table {
+        border-collapse: collapse;
+        border: 2px black solid;
+        font: 12px sans-serif;
+      }
+
+      td,
+      th {
+        border: 1px black solid;
+        padding: 5px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <script src="https://unpkg.com/vue"></script>
+
+    <div id="app">
+      <!--
+      <h4>Table using local data</h4>
+      <table>
+        <thead>
+          <tr>
+            <th v-for="header in gridCol">{{ header }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="entry in gridData">
+            <td v-for="header in gridCol">{{ entry[header] }}</td>
+          </tr>
+        </tbody>
+      </table>
+      -->
+    </div>
+  </body>
+</html>
+
+<script>
+  var app = new Vue({
+    el: "#app",
+    data: {},
+    mounted: function() {
+      this.fetchData(
+        "https://direct.codecombat.com/db/level/5b1ebdcd2524ba0023e95602.0/leaderboard?order=-1&scoreOffset=1000000&limit=120&team=humans&_=1542101575367"
+      );
+    },
+    methods: {
+      fetchData(url) {
+        fetch(url)
+          .then(response => {
+            return response.json();
+          })
+          .then(text => {
+            //var self = this;
+            console.log(text);
+          });
+      },
+    }
+  });
+</script>
