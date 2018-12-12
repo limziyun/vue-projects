@@ -25,23 +25,26 @@
     <div id="app">
       <h4>Top 10 of King of the hill leaderboard</h4>
       <table>
-      	<!--
-        <thead>
-          <tr>
-            <th v-for="(header, index) in gridCol">{{ header }}</th>
-          </tr>
-        </thead>
-    -->
-        <tbody v-for="person in humans">
+        <tbody v-for="person in kingHumans">
           <tr v-for="(entry, index) in person" v-if="index < 10">
             <td> {{ index+1 }} </td>
             <td>{{ entry["creatorName"] }}</td>
-            <td> {{ ogres[0][index]["creatorName"] }} </td>
+            <td> {{ kingOgres[0][index]["creatorName"] }} </td>
           </tr>
         </tbody>
 	  </table>
 	  <!-- {{ ogres }} -->
 	  <!-- {{ humans }} -->
+	  <h4>Top 10 of Treasure Games</h4>
+      <table>
+        <tbody v-for="person in treasureHumans">
+          <tr v-for="(entry, index) in person" v-if="index < 10">
+            <td> {{ index+1 }} </td>
+            <td>{{ entry["creatorName"] }}</td>
+            <td> {{ treasureOgres[0][index]["creatorName"] }} </td>
+          </tr>
+        </tbody>
+	  </table>
     </div>
   </body>
 </html>
@@ -50,25 +53,21 @@
   var app = new Vue({
     el: "#app",
     data: {
-    	humans: [],
-    	ogres: []
+    	kingHumans: [],
+    	kingOgres: [],
+    	treasureHumans: [],
+    	treasureOgres: []
     },
     mounted: function() {
-      this.fetchHumansData(
-        "https://direct.codecombat.com/db/level/5b1ebdcd2524ba0023e95602.0/leaderboard?order=-1&scoreOffset=1000000&limit=120&team=humans&_=1542101575367"
-      );
-      this.fetchOgresData("https://direct.codecombat.com/db/level/5b1ebdcd2524ba0023e95602.0/leaderboard?order=-1&scoreOffset=1000000&limit=120&team=ogres&_=1542101575368");
+      this.fetchKingHumansData('https://direct.codecombat.com/db/level/5b1ebdcd2524ba0023e95602.0/leaderboard?order=-1&scoreOffset=1000000&limit=120&team=humans&_=1542101575367');
+      this.fetchKingOgresData('https://direct.codecombat.com/db/level/5b1ebdcd2524ba0023e95602.0/leaderboard?order=-1&scoreOffset=1000000&limit=120&team=ogres&_=1542101575368');
+      this.fetchTreaHumansData('https://codecombat.com/db/level/5a71c79aacd3800041676ac6.0/leaderboard?order=-1&scoreOffset=1000000&limit=120&team=humans&_=1542101773316');
+      this.fetchTreaOgresData('https://codecombat.com/db/level/5a71c79aacd3800041676ac6.0/leaderboard?order=-1&scoreOffset=1000000&limit=120&team=ogres&_=1542101773317');
     },
     methods: {
-      fetchHumansData(url) {
+      fetchKingHumansData(url) {
       	var temp;
-        fetch(url
-        	//, {
-        	//headers: {
-        	//	"Access-Control-Allow-Origin": '*'
-        	//}
-        //}
-        )
+        fetch(url)
           .then((response) => {
             return response.json();
           })
@@ -76,19 +75,25 @@
             var self = this;
             //console.log(text);
             //temp = text;
-            self.humans.push(text);
-            console.log(self.humans);
+            self.kingHumans.push(text);
+            console.log(self.kingHumans);
           });
       }, 
-      fetchOgresData(url) {
+      fetchKingOgresData(url) {
       	var temp;
-        fetch(url
-        	//, {
-        	//headers: {
-        	//	"Access-Control-Allow-Origin": '*'
-        	//}
-        //}
-        )
+        fetch(url)
+          .then((response) => {
+            return response.json();
+          })
+          .then((text) => {
+            var self = this;
+            self.kingOgres.push(text);
+            console.log(self.kingOgres);
+          });
+      }, 
+      fetchTreaHumansData(url) {
+      	var temp;
+        fetch(url)
           .then((response) => {
             return response.json();
           })
@@ -96,8 +101,20 @@
             var self = this;
             //console.log(text);
             //temp = text;
-            self.ogres.push(text);
-            console.log(self.ogres);
+            self.treasureHumans.push(text);
+            console.log(self.treasureHumans);
+          });
+      }, 
+      fetchTreaOgresData(url) {
+      	var temp;
+        fetch(url)
+          .then((response) => {
+            return response.json();
+          })
+          .then((text) => {
+            var self = this;
+            self.treasureOgres.push(text);
+            console.log(self.treasureOgres);
           });
       }, 
       /*
