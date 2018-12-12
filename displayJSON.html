@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+  	<!--
     <style>
       table {
         border-collapse: collapse;
@@ -13,28 +14,34 @@
         border: 1px black solid;
         padding: 5px;
       }
-    </style>
+    </style> -->
   </head>
 
+  <script src="https://unpkg.com/vue"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+
   <body>
-    <script src="https://unpkg.com/vue"></script>
 
     <div id="app">
-      <!--
-      <h4>Table using local data</h4>
+      <h4>Top 10 of King of the hill leaderboard</h4>
       <table>
+      	<!--
         <thead>
           <tr>
-            <th v-for="header in gridCol">{{ header }}</th>
+            <th v-for="(header, index) in gridCol">{{ header }}</th>
           </tr>
         </thead>
-        <tbody>
-          <tr v-for="entry in gridData">
-            <td v-for="header in gridCol">{{ entry[header] }}</td>
+    -->
+        <tbody v-for="person in humans">
+          <tr v-for="(entry, index) in person" v-if="index < 10">
+            <td> {{ index+1 }} </td>
+            <td>{{ entry["creatorName"] }}</td>
+            <td> {{ ogres[0][index]["creatorName"] }} </td>
           </tr>
         </tbody>
-      </table>
-      -->
+	  </table>
+	  <!-- {{ ogres }} -->
+	  <!-- {{ humans }} -->
     </div>
   </body>
 </html>
@@ -42,28 +49,78 @@
 <script>
   var app = new Vue({
     el: "#app",
-    data: {},
+    data: {
+    	humans: [],
+    	ogres: []
+    },
     mounted: function() {
-      this.fetchData(
+      this.fetchHumansData(
         "https://direct.codecombat.com/db/level/5b1ebdcd2524ba0023e95602.0/leaderboard?order=-1&scoreOffset=1000000&limit=120&team=humans&_=1542101575367"
       );
+      this.fetchOgresData("https://direct.codecombat.com/db/level/5b1ebdcd2524ba0023e95602.0/leaderboard?order=-1&scoreOffset=1000000&limit=120&team=ogres&_=1542101575368");
     },
     methods: {
-      fetchData(url) {
-        fetch(url, {
-          method: 'GET',
-          headers: {
-            "Content-Type": "text/plain"
-          }
-        })
-          .then(response => {
-            return response.text();
+      fetchHumansData(url) {
+      	var temp;
+        fetch(url
+        	//, {
+        	//headers: {
+        	//	"Access-Control-Allow-Origin": '*'
+        	//}
+        //}
+        )
+          .then((response) => {
+            return response.json();
           })
-          .then(text => {
-            //var self = this;
-            console.log(text);
+          .then((text) => {
+            var self = this;
+            //console.log(text);
+            //temp = text;
+            self.humans.push(text);
+            console.log(self.humans);
           });
-      },
+      }, 
+      fetchOgresData(url) {
+      	var temp;
+        fetch(url
+        	//, {
+        	//headers: {
+        	//	"Access-Control-Allow-Origin": '*'
+        	//}
+        //}
+        )
+          .then((response) => {
+            return response.json();
+          })
+          .then((text) => {
+            var self = this;
+            //console.log(text);
+            //temp = text;
+            self.ogres.push(text);
+            console.log(self.ogres);
+          });
+      }, 
+      /*
+      fetchData(url){
+      	var xml = new XMLHttpRequest();
+      	if(xml){
+      	    xml.open("GET", url, true);
+      	    console.log(xml.responseText);
+      		xml.onreadystatechange = function(){
+      	    	if (this.readyState == 4 && this.status == 200){
+      	    		var obj = JSON.parse(this.responseText);
+      	      		console.log(obj);
+      	    	}
+      	    };
+      	    xml.send();
+      	}
+      }, */
+      /*
+      fetchData(url){
+      	$.getJSON(url, function(data){
+      		console.log(data);
+      	})
+      }, */
     }
   });
 </script>
