@@ -18,7 +18,7 @@
   </head>
 
   <script src="https://unpkg.com/vue"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script> -->
 
   <body>
 
@@ -29,7 +29,7 @@
       		<tr>
       			<th> </th>
       			<th> Team Humans </th>
-      			<!-- <th> Team Ogres </th> -->
+      			<th> Team Ogres </th>
       		</tr>
       	</thead>
 
@@ -37,7 +37,7 @@
           <tr v-for="(entry, index) in person" v-if="index < 10">
             <td> {{ index+1 }} </td>
             <td>{{ entry["creatorName"] }}</td>
-            <!-- <td> {{ kingOgres[0][index]["creatorName"] }} </td> -->
+            <td> {{ kingOgres[0][index]["creatorName"] }} </td>
           </tr>
         </tbody>
 	  </table>
@@ -76,7 +76,7 @@
     },
     mounted: function() {
       this.fetchKingHumansData('https://ace4ds5tl9.execute-api.ap-southeast-1.amazonaws.com/default/getJSON?url=https://direct.codecombat.com/db/level/5b1ebdcd2524ba0023e95602.0/leaderboard?order=-1&scoreOffset=1000000&limit=120&team=humans&_=1542101575367');
-      //this.fetchKingOgresData('https://direct.codecombat.com/db/level/5b1ebdcd2524ba0023e95602.0/leaderboard?order=-1&scoreOffset=1000000&limit=120&team=ogres&_=1542101575368');
+      this.fetchKingOgresData('https://ace4ds5tl9.execute-api.ap-southeast-1.amazonaws.com/default/getJSON?url=https://direct.codecombat.com/db/level/5b1ebdcd2524ba0023e95602.0/leaderboard?order=-1&scoreOffset=1000000&limit=120&team=ogres&_=1542101575368');
       //this.fetchTreaHumansData('https://codecombat.com/db/level/5a71c79aacd3800041676ac6.0/leaderboard?order=-1&scoreOffset=1000000&limit=120&team=humans&_=1542101773316');
       //this.fetchTreaOgresData('https://codecombat.com/db/level/5a71c79aacd3800041676ac6.0/leaderboard?order=-1&scoreOffset=1000000&limit=120&team=ogres&_=1542101773317');
     },
@@ -94,7 +94,7 @@
             self.kingHumans.push(text);
             console.log(self.kingHumans);
           });
-      }, /*
+      }, 
       fetchKingOgresData(url) {
       	var temp;
         fetch(url)
@@ -106,7 +106,7 @@
             self.kingOgres.push(text);
             console.log(self.kingOgres);
           });
-      }, 
+      }, /*
       fetchTreaHumansData(url) {
       	var temp;
         fetch(url)
