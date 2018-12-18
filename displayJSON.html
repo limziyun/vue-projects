@@ -18,7 +18,6 @@
   </head>
 
   <script src="https://unpkg.com/vue"></script>
-    <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script> -->
 
   <body>
 
@@ -43,7 +42,7 @@
 	  </table>
 	  <!-- {{ ogres }} -->
 	  <!-- {{ humans }} -->
-	  <!--
+	    
 	  <h4>Top 10 of Treasure Games</h4>
       <table>
       	<thead>
@@ -60,7 +59,7 @@
             <td> {{ treasureOgres[0][index]["creatorName"] }} </td>
           </tr>
         </tbody>
-	  </table> -->
+	  </table>
     </div>
   </body>
 </html>
@@ -77,8 +76,8 @@
     mounted: function() {
       this.fetchKingHumansData('https://ace4ds5tl9.execute-api.ap-southeast-1.amazonaws.com/default/getJSON?url=https://direct.codecombat.com/db/level/5b1ebdcd2524ba0023e95602.0/leaderboard?order=-1&scoreOffset=1000000&limit=120&team=humans&_=1542101575367');
       this.fetchKingOgresData('https://ace4ds5tl9.execute-api.ap-southeast-1.amazonaws.com/default/getJSON?url=https://direct.codecombat.com/db/level/5b1ebdcd2524ba0023e95602.0/leaderboard?order=-1&scoreOffset=1000000&limit=120&team=ogres&_=1542101575368');
-      //this.fetchTreaHumansData('https://codecombat.com/db/level/5a71c79aacd3800041676ac6.0/leaderboard?order=-1&scoreOffset=1000000&limit=120&team=humans&_=1542101773316');
-      //this.fetchTreaOgresData('https://codecombat.com/db/level/5a71c79aacd3800041676ac6.0/leaderboard?order=-1&scoreOffset=1000000&limit=120&team=ogres&_=1542101773317');
+      this.fetchTreaHumansData('https://ace4ds5tl9.execute-api.ap-southeast-1.amazonaws.com/default/getJSON?url=https://codecombat.com/db/level/5a71c79aacd3800041676ac6.0/leaderboard?order=-1&scoreOffset=1000000&limit=120&team=humans&_=1542101773316');
+      this.fetchTreaOgresData('https://ace4ds5tl9.execute-api.ap-southeast-1.amazonaws.com/default/getJSON?url=https://codecombat.com/db/level/5a71c79aacd3800041676ac6.0/leaderboard?order=-1&scoreOffset=1000000&limit=120&team=ogres&_=1542101773317');
     },
     methods: {
       fetchKingHumansData(url) {
@@ -106,7 +105,7 @@
             self.kingOgres.push(text);
             console.log(self.kingOgres);
           });
-      }, /*
+      }, 
       fetchTreaHumansData(url) {
       	var temp;
         fetch(url)
@@ -132,7 +131,7 @@
             self.treasureOgres.push(text);
             console.log(self.treasureOgres);
           });
-      }, */
+      }, 
       /*
       fetchData(url){
       	var xml = new XMLHttpRequest();
