@@ -74,7 +74,7 @@
     	treasureOgres: []
     },
     mounted: function() {
-      this.fetchKingHumansData('https://direct.codecombat.com/db/level/5b1ebdcd2524ba0023e95602.0/leaderboard?order=-1&scoreOffset=1000000&limit=120&team=humans&_=1542101575367');
+      this.fetchKingHumansData('https://ace4ds5tl9.execute-api.ap-southeast-1.amazonaws.com/default/getJSON?url=https://direct.codecombat.com/db/level/5b1ebdcd2524ba0023e95602.0/leaderboard?order=-1&scoreOffset=1000000&limit=120&team=humans&_=1542101575367');
       this.fetchKingOgresData('https://direct.codecombat.com/db/level/5b1ebdcd2524ba0023e95602.0/leaderboard?order=-1&scoreOffset=1000000&limit=120&team=ogres&_=1542101575368');
       this.fetchTreaHumansData('https://codecombat.com/db/level/5a71c79aacd3800041676ac6.0/leaderboard?order=-1&scoreOffset=1000000&limit=120&team=humans&_=1542101773316');
       this.fetchTreaOgresData('https://codecombat.com/db/level/5a71c79aacd3800041676ac6.0/leaderboard?order=-1&scoreOffset=1000000&limit=120&team=ogres&_=1542101773317');
