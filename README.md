@@ -5,4 +5,4 @@ About:
 
 Download csv data from Google spreadsheet and display into an HTML table (https://limziyun.github.io/vue-projects/displayCSV.html)
 
-Download Code Combat ladder json data and display top 10 into HTML table, with the use of [Allow-Control-Allow-Origin: *](https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi/related?hl=en-US) extension on Chrome (https://limziyun.github.io/vue-projects/displayJSON.html)
+Download Code Combat ladder json data and display top 10 into HTML table (https://limziyun.github.io/vue-projects/displayJSON.html)
